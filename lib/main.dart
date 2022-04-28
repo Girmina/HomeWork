@@ -86,18 +86,23 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('KinoClab'),
       ),
-      body: Column(children: <Widget>[
-        for (Kino kino in kinoshki)
-          FilmCard(
-            id: kino.id,
-            title: kino.title,
-            voteAverage: kino.voteAverage,
-            description: kino.description,
-            picture: kino.picture,
-            language: kino.language,
-            releaseDate: kino.releaseDate,
-          ),
-      ]),
+      body: Column(
+        children: [
+          ...List.generate(kinoshki.length, (index) {
+            return FilmCard(
+              id: kinoshki[index].id,
+              title: kinoshki[index].title,
+              voteAverage: kinoshki[index].voteAverage,
+              description: kinoshki[index].description,
+              picture: kinoshki[index].picture,
+              language: kinoshki[index]
+                  .getFilmLanguage(kinoshki[index].language)
+                  .toPrettyString(),
+              releaseDate: kinoshki[index].releaseDate,
+            );
+          }),
+        ],
+      ),
     );
   }
 }
