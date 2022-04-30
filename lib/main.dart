@@ -48,7 +48,7 @@ bool filterWeight = false;
         const Kino(
           id: '0001',
           title: 'Брат',
-          picture: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/e9008e2f-433f-43b0-b9b8-2ea8e3fb6c9b/600x900'),
+          picture: '',//'https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/e9008e2f-433f-43b0-b9b8-2ea8e3fb6c9b/600x900'),
           voteAverage: 8.9,
           releaseDate: 'дд.мм.гггг',
           description: 'О парне...',
