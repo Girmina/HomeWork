@@ -29,81 +29,122 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Kino> kinoshki = [
-    const Kino(
-        id: '0001',
-        title: 'Брат',
-        picture: '',
-        voteAverage: 8.9,
-        releaseDate: 'дд.мм.гггг',
-        description: 'О парне...',
-        language: 'ru'),
-    const Kino(
-        id: '0002',
-        title: 'Криминальное чтиво',
-        picture: '',
-        voteAverage: 9.0,
-        releaseDate: 'дд.мм.гггг',
-        description: 'Гангстеры...',
-        language: 'uk'),
-    const Kino(
-        id: '0003',
-        title: 'Пинокио',
-        picture: '',
-        voteAverage: 5.6,
-        releaseDate: 'дд.мм.гггг',
-        description: 'О бревне...',
-        language: 'ital'),
-    const Kino(
-        id: '0004',
-        title: 'Жандармы',
-        picture: '',
-        voteAverage: 4.2,
-        releaseDate: 'дд.мм.гггг',
-        description: 'Комедия...',
-        language: 'fr'),
-    const Kino(
-        id: '0005',
-        title: 'Диско',
-        picture: '',
-        voteAverage: 3.7,
-        releaseDate: 'дд.мм.гггг',
-        description: 'Танцы, песни...',
-        language: 'ind'),
-    const Kino(
-        id: '0006',
-        title: 'Красавчик',
-        picture: '',
-        voteAverage: 7.8,
-        releaseDate: 'дд.мм.гггг',
-        description: 'О неудачах...',
-        language: 'de'),
-  ];
+  List<Kino> kinoshki = [];
+bool filterWeight = false;
+
 
   @override
+  void initState(){
+      _getKinoshki().then((value){
+        setState(() {
+          kinoshki = value;
+        });
+      });
+      super.initState();
+  }
+  Future<List<Kino>>_getKinoshki()async{
+      await Future.delayed(const Duration(seconds: 1));
+      return[
+        const Kino(
+          id: '0001',
+          title: 'Брат',
+          picture: 'https://avatars.mds.yandex.net/get-kinopoisk-image/1704946/e9008e2f-433f-43b0-b9b8-2ea8e3fb6c9b/600x900'),
+          voteAverage: 8.9,
+          releaseDate: 'дд.мм.гггг',
+          description: 'О парне...',
+          language: 'ru'),
+        const Kino(
+            id: '0002',
+            title: 'Криминальное чтиво',
+            picture: '',
+            voteAverage: 9.0,
+            releaseDate: 'дд.мм.гггг',
+            description: 'Гангстеры...',
+            language: 'uk'),
+        const Kino(
+            id: '0003',
+            title: 'Пинокио',
+            picture: '',
+            voteAverage: 5.6,
+            releaseDate: 'дд.мм.гггг',
+            description: 'О бревне...',
+            language: 'ital'),
+        const Kino(
+            id: '0004',
+            title: 'Жандармы',
+            picture: '',
+            voteAverage: 4.2,
+            releaseDate: 'дд.мм.гггг',
+            description: 'Комедия...',
+            language: 'fr'),
+        const Kino(
+            id: '0005',
+            title: 'Диско',
+            picture: '',
+            voteAverage: 3.7,
+            releaseDate: 'дд.мм.гггг',
+            description: 'Танцы, песни...',
+            language: 'ind'),
+        const Kino(
+            id: '0006',
+            title: 'Красавчик',
+            picture: '',
+            voteAverage: 7.8,
+            releaseDate: 'дд.мм.гггг',
+            description: 'О неудачах...',
+            language: 'de'),
+      ];
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('KinoClab'),
       ),
-      body: Column(
-        children: [
-          ...List.generate(kinoshki.length, (index) {
-            return FilmCard(
-              id: kinoshki[index].id,
-              title: kinoshki[index].title,
-              voteAverage: kinoshki[index].voteAverage,
-              description: kinoshki[index].description,
-              picture: kinoshki[index].picture,
-              language: kinoshki[index]
-                  .getFilmLanguage(kinoshki[index].language)
-                  .toPrettyString(),
-              releaseDate: kinoshki[index].releaseDate,
-            );
-          }),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row (
+              children: [
+              Checkbox(
+            value: filterWeight,
+          onChanged:(bool? changeValue){
+              setState(() {
+            filterWeight = changeValue ?? false;
+          });},
+        ),
+            const Text('только большие'),
+  ],),
+            ElevatedButton(onPressed: filterKino,
+              child: const Text('Поиск'),
+            ),
+            ...List.generate(kinoshki.length, (index) {
+              return FilmCard(
+                id: kinoshki[index].id,
+                title: kinoshki[index].title,
+                voteAverage: kinoshki[index].voteAverage,
+                description: kinoshki[index].description,
+                picture: kinoshki[index].picture,
+                language: kinoshki[index]
+                    .getFilmLanguage(kinoshki[index].language)
+                    .toPrettyString(),
+                releaseDate: kinoshki[index].releaseDate,
+              );
+            }),
+          ],
+        ),
       ),
     );
+  }
+  Future<void>filterKino()async{
+    await _getKinoshki().then((valueKinoshki){
+      setState((){
+        if(filterWeight) {
+          kinoshki =
+              valueKinoshki.where((element) => element.voteAverage >
+                  8).toList();
+        } else{kinoshki =valueKinoshki;}
+      });
+    });
   }
 }
 
