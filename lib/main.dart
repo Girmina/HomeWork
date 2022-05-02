@@ -100,11 +100,13 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.tealAccent[100],
       appBar: AppBar(
           backgroundColor: Colors.teal,
+          title: const Text ('Films'),
           leading: IconButton(
             icon: const Icon(Icons.menu),
             onPressed: () {},
@@ -214,6 +216,7 @@ class FilmCard extends StatelessWidget {
                         title,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
+
                       Text(
                         'Оценка $voteAverage',
                         style: Theme.of(context).textTheme.bodyLarge,
@@ -222,25 +225,28 @@ class FilmCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.bodyLarge),
                       Text ('Описание: '+description,
                       style: Theme.of(context).textTheme.bodySmall),
-                      Text('Язык: ${language},',
+                      Text('Язык: $language,',
                           style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                 ),
-                color: Colors.teal,
+                //color: Colors.teal,
                 height: 160,
               ),
             ),
             Container(
-              color: Colors.teal,
+             // color: Colors.teal,
               height: 160,
               width: 20,
             ),
             Expanded(
-              child: Container(
-                color: Colors.teal,
+              child: Container(clipBehavior : Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+               // color: Colors.teal,
+                    ),
                 child: Image.network('' + picture, width: 300, height: 160),
-                height: 160,
+                  height: 160
               ),
             ),
           ],
