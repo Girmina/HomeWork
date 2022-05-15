@@ -71,8 +71,7 @@ class FilmCard extends StatelessWidget {
               height: 60,
               color: Colors.white38,
               child: GridTile(
-                child: Expanded(
-                  flex: 2,
+
                   child: Container(
                     padding: const EdgeInsets.only(left: 16, top: 10),
                     child: Column(
@@ -127,7 +126,7 @@ class FilmCard extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+
           const Align(
             alignment: Alignment.topLeft,
             child: Padding(
