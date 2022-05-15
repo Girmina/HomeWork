@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:homework_2/app/features/models/film_card_model.dart';
 import 'package:homework_2/app/features/widgets/film_card.dart';
-import 'package:homework_2/app/features/widgets/image_network.dart';
-
 
 class FilmGrid extends StatelessWidget {
   const FilmGrid({Key? key}) : super(key: key);

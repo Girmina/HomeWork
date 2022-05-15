@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:homework_2/app/features/models/film_card_model.dart';
@@ -71,7 +72,6 @@ class FilmCard extends StatelessWidget {
               height: 60,
               color: Colors.white38,
               child: GridTile(
-
                 child: Expanded(
                   flex: 2,
                   child: Container(
@@ -79,28 +79,60 @@ class FilmCard extends StatelessWidget {
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(title,
-                            style: Theme.of(context).textTheme.titleMedium,),
+                          Text(
+                            title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                              color: Colors.white,
+                              shadows: <Shadow>[
+                                const Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 3.0,
+                                ),
+                              ],
+                            ),
+                          ),
                           Text(
                             releaseDate,
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Colors.white,
+                              shadows: <Shadow>[
+                                const Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 3.0,
+                                  ),
+                              ],
+                            ),
                           ),
-                          Text(
+                          Flexible(
+                            child: Text(
                             description,
-                            style: Theme.of(context).textTheme.bodySmall,
+                            style:
+                            Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Colors.white,
+                              shadows: <Shadow>[
+                                const Shadow(
+                                  offset: Offset(1.0, 1.0),
+                                  blurRadius: 3.0,
+                                ),
+                              ],
+                            ),
                             overflow: TextOverflow.ellipsis,
-                          ),
+                          ),)
+
                         ]),
                   ),
                 ),
-
               ),
             ),
           ),
-          Align(
+          const Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: const EdgeInsets.only(top: 4.0),
+              padding: EdgeInsets.only(top: 4.0),
               child: PrimaryButton(
                 'More',
                 // onPressed: () {},
