@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+ru/madbrains/flutter_courses/BuildConfig.java
+ ru.madbrains.flutter_courses.BuildConfig
