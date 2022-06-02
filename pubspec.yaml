@@ -1,0 +1,65 @@
+name: homework_6
+description: homework_6
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  shared_preferences: ^2.0.13
+
+  # core
+  equatable: 2.0.3
+  flutter_bloc: ^8.0.1
+
+
+
+  # widgets
+  cached_network_image: ^3.2.0
+  flutter_cache_manager: ^3.3.0
+  flutter_html: ^2.2.1
+
+  # http
+  dio: ^4.0.4
+  pretty_dio_logger: ^1.1.1
+
+  # generators
+  json_annotation: ^4.5.0
+
+  # DB
+  drift: ^1.5.0
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.0.0
+  path: ^1.8.0
+  webview_flutter_android: ^2.8.9
+
+
+
+dev_dependencies:
+  dart_style: ^2.2.3
+
+  drift_dev: ^1.5.2
+
+  # generators
+  build_runner: ^2.1.11
+  json_serializable: ^6.2.0
+
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+
